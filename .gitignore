@@ -49,5 +49,6 @@ Thumbs.db
 **-debug.log
 report.**.json
 /src/environments
+.firebase
 
 shithead-283014-691b28a8ac2b.json
