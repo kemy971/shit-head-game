@@ -1,0 +1,36 @@
+<div class="player" [ngClass]="{'is-loading': isLoading}">
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <h3> 
+    <span *ngIf="isCurrentPlayer">🖐🏻</span> {{player.username}} ({{hand.length}})
+  </h3>
+  <div class="deck" [ngClass]="{'cant-lay': !canLayFromFaceUp()}">
+    <div class="face-up">
+      <img 
+        *ngFor="let card of faceUp; let i = index" 
+        src="assets/img/{{card.name}}.png" 
+        (click)="!isLoading && canLayFromFaceUp() && dealCardFromFaceUp(i)"
+      />
+    </div>
+    <div class="face-down" [ngClass]="{'cant-lay': canLayFromFaceUp() && !canLayFromFaceDown()}">
+      <img
+        *ngFor="let card of faceDown; let i = index"
+        src="assets/img/back.png" 
+      />
+    </div>
+  </div>
+  <div class="hand" *ngIf="!player.handEmpty()">
+    <img 
+      *ngFor="let card of hand; let i = index" 
+      src="assets/img/{{card.name}}.png" 
+      alt="" 
+      (click)="!isLoading && canLayCard(card) && clickOnCard(card)"
+      (dblclick)="canLayCard(card) && dealCardFromHand(i)"
+      [ngClass]="{'cant-lay': !canLayCard(card), 'selected': isSelected(card)}"
+    />
+    <div class="cant-lay-overlay" *ngIf="!canLay && isCurrentPlayer">
+      <button mat-button mat-flat-button (click)="cantPlay()">I cant play !</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="flex-layout">
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title>Create a room</mat-card-title>
+      <mat-form-field >
+        <mat-label>Please enter your username</mat-label>
+        <input matInput [(ngModel)]="username">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" class="mat-button-block" (click)="createRoom()" [disabled]="!username.length || isCreating">Create</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

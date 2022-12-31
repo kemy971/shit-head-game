@@ -1,0 +1,28 @@
+<div class="flex-layout">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-card *ngIf="!isLoading">
+    <mat-card-title>Waiting for players ...</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let player of players">
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <div mat-line>{{player.username}}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="!isInRoom">
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <div mat-line>
+            <mat-form-field class="example-full-width">
+              <mat-label>Enter your username</mat-label>
+              <input matInput [(ngModel)]="username">
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button *ngIf="!isInRoom" mat-button mat-flat-button color="primary" class="mat-button-block"  (click)="joinParty()" [disabled]="!username.length || isJoining">Join party</button>
+      <button *ngIf="isOwner" mat-button mat-flat-button color="primary" class="mat-button-block" (click)="startGame()" [disabled]="players.length < 2">Start</button>
+    </mat-card-actions>
+    
+  </mat-card>
+</div>

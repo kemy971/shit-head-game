@@ -1,0 +1,29 @@
+<div *ngIf="currentPlayer" class="table">
+  <div class="players">
+    <app-player 
+      *ngFor="let player of getNotCurrentPlayers()" 
+      [player]="player"
+      [isCurrentPlayer]="!currentPlayer || (currentPlayer && currentPlayer === player.id)"
+    ></app-player>
+  </div>
+  <div class="pile-deck">
+    <div class="deck">
+      <h3>Deck ({{deck.getSize()}})</h3>
+      <h3>Pile ({{pile ? pile.length :  0}})</h3>
+    </div>
+    <div class="pile" *ngIf="pile && pile.length">
+      <img *ngFor="let card of pile.reverse()"  [ngStyle]="{'transform': 'rotate('+card.rotate+'deg)', 'z-index': card.position}" src="assets/img/{{card.name}}.png" alt="">
+    </div>
+  </div>
+  <div class="player">
+    <app-player-deck 
+      [gameId]="gameId"
+      [player]="getPlayer()"
+      [isCurrentPlayer]="(!currentPlayer && !getPlayer()) || (getPlayer() && currentPlayer && currentPlayer === getPlayer().id)"
+      [deck]="deck"
+      [currentRank]="pileRank"
+      (takePile)="takePile(getPlayer())"
+    >
+    </app-player-deck>
+  </div>
+</div>

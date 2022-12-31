@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "shithead-95103": {
+      "hosting": {
+        "shithead": [
+          "shithead-95103"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "shithead-95103"
+  }
+}

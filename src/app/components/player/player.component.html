@@ -1,0 +1,10 @@
+<div>
+  <div class="deck">
+    <div class="face-up">
+      <img *ngFor="let card of faceUp" src="assets/img/{{card.name}}.png" alt="">
+    </div>
+  </div>
+  <h3> 
+    <span *ngIf="isCurrentPlayer">🖐🏻</span> {{player.username}} - 🃏{{hand.length}}
+  </h3>
+</div>
